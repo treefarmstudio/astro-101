@@ -1,0 +1,26 @@
+---
+// Component imports and setup JavaScript go here!
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const title = "Testing Title from fences"
+---
+
+<style lang="scss" scoped>
+div {
+ h1 {
+    color: blue;
+  }
+}
+</style>
+
+<BaseLayout title={title}>
+  <div>
+    <h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
+    <p>Hey I'm using a layout</p>
+  </div>
+  <h1>Testing another Heading</h1>
+  <a href="/contact">Contact</a>
+</BaseLayout>
+
+
+
