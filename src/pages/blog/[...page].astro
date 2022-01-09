@@ -18,8 +18,10 @@ const {page} = Astro.props;
 <BaseLayout title={title}>
   <div>
     <h1>{title}</h1>
+    <ul>
     {page.data.map((post) => (
-      <a href={post.url}>{post.title}</a>
+      <li><a href={post.url}>{post.title}</a></li>
     ))}
+    </ul>
   </div>
 </BaseLayout>
