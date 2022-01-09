@@ -1,0 +1,25 @@
+---
+// Component imports and setup JavaScript go here!
+import BaseLayout from '../../layouts/BaseLayout.astro'
+
+export async function getStaticPaths({paginate}) {
+  const allPosts = Astro.fetchContent('./*.md');
+  const sortedPosts = allPosts.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
+  return paginate(sortedPosts, {pageSize: 100});
+}
+
+const title = "Blog"
+const {page} = Astro.props;
+---
+
+<style lang="scss" scoped>
+</style>
+
+<BaseLayout title={title}>
+  <div>
+    <h1>{title}</h1>
+    {page.data.map((post) => (
+      <a href={post.url}>{post.title}</a>
+    ))}
+  </div>
+</BaseLayout>

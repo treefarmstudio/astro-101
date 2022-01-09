@@ -1,0 +1,27 @@
+---
+// Component imports and setup JavaScript go here!
+import BaseHead from '../components/BaseHead.astro'
+const {title} = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} />
+    <style>
+      :global(img) {
+        width: 200px;
+        height: auto;
+      }
+      article {
+        margin: 0 auto;
+        max-width: 860px;
+      }
+    </style>
+	</head>
+
+	<body>
+    <article>
+		  <slot />
+    </article>
+	</body>
+</html>
