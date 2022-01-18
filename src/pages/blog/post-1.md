@@ -1,6 +1,7 @@
 ---
 setup: |
   import Layout from '../../layouts/BlogPostLayout.astro';
+  import SpecialButton from '../../components/SpecialButtons/SpecialButton.jsx';
 title: Example Blog
 description: This is an example blog post
 date: 2021-07-31
@@ -10,6 +11,8 @@ author: "Jaydan Urwin"
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis lectus nulla at volutpat diam ut venenatis tellus. Morbi tincidunt ornare massa eget egestas. Morbi tristique senectus et netus. Eget mauris pharetra et ultrices. Consequat nisl vel pretium lectus quam. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Pellentesque eu tincidunt tortor aliquam nulla facilisi cras. Sed risus ultricies tristique nulla aliquet enim. Amet consectetur adipiscing elit duis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames. Sit amet mattis vulputate enim nulla aliquet. Adipiscing tristique risus nec feugiat in fermentum posuere. Enim blandit volutpat maecenas volutpat blandit. Dictumst vestibulum rhoncus est pellentesque. Sit amet nisl purus in mollis nunc sed id. Orci ac auctor augue mauris augue neque gravida. Congue nisi vitae suscipit tellus mauris a. Etiam erat velit scelerisque in.
 
 ![Space Photo](/images/john-fowler-unsplash.jpg)
+
+<SpecialButton client:load>Click Me!</SpecialButton>
 
 A cras semper auctor neque. Amet consectetur adipiscing elit duis tristique sollicitudin. Arcu dictum varius duis at consectetur lorem donec massa. Augue neque gravida in fermentum et sollicitudin ac. Nibh tortor id aliquet lectus proin nibh nisl condimentum id. Maecenas pharetra convallis posuere morbi. Viverra orci sagittis eu volutpat. Nunc lobortis mattis aliquam faucibus. Amet nulla facilisi morbi tempus iaculis urna id volutpat lacus. Facilisis gravida neque convallis a cras. Pellentesque pulvinar pellentesque habitant morbi tristique senectus et. Elementum sagittis vitae et leo. Eget gravida cum sociis natoque penatibus et. Mollis nunc sed id semper risus in hendrerit gravida. Elementum eu facilisis sed odio morbi quis commodo odio. Faucibus scelerisque eleifend donec pretium vulputate sapien. Viverra orci sagittis eu volutpat odio facilisis. Nunc congue nisi vitae suscipit tellus mauris a. Imperdiet massa tincidunt nunc pulvinar sapien et. In vitae turpis massa sed elementum.
 
