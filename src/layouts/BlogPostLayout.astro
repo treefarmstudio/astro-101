@@ -1,12 +1,17 @@
 ---
 // Component imports and setup JavaScript go here!
 import BaseHead from '../components/BaseHead.astro'
-const {title} = Astro.props;
+import {generateSlug} from '../utils/helpers.js'
+const {content} = Astro.props;
+const allCategoriesData = []
+content.categories.forEach(category => {
+  allCategoriesData.push({name: category, slug: `${generateSlug(category)}`})
+});
 ---
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} />
+		<BaseHead title={content.title} />
     <style>
       :global(img) {
         width: 200px;
@@ -20,6 +25,12 @@ const {title} = Astro.props;
 	</head>
 
 	<body>
+    <ul>
+      {allCategoriesData.map((category) => (
+        // <li><a>{category.name}</a></li>
+        <li><a href={`/blog/categories/${category.slug}`}>{category.name}</a></li>
+      ))}
+    </ul>
     <article>
 		  <slot />
     </article>
