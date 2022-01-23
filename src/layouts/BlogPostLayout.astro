@@ -1,12 +1,9 @@
 ---
 // Component imports and setup JavaScript go here!
 import BaseHead from '../components/BaseHead.astro'
-import {generateSlug} from '../utils/helpers.js'
+import {generateCategoryData} from '../utils/helpers.js'
 const {content} = Astro.props;
-const allCategoriesData = []
-content.categories.forEach(category => {
-  allCategoriesData.push({name: category, slug: `${generateSlug(category)}`})
-});
+const allCategoriesData = generateCategoryData(content.categories)
 ---
 
 <html lang="en">

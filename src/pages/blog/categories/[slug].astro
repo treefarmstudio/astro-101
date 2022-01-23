@@ -1,7 +1,7 @@
 ---
 // Component imports and setup JavaScript go here!
 import BaseLayout from '../../../layouts/BaseLayout.astro'
-import {generateSlug} from '../../../utils/helpers.js'
+import {generateCategoryData} from '../../../utils/helpers.js'
 
 export async function getStaticPaths({ }) {
   const allPosts = Astro.fetchContent('../*.md');
@@ -13,11 +13,7 @@ export async function getStaticPaths({ }) {
       post.categories && post.categories.map(category => allCategoriesUnique.add(category))
   })
 
-  const allCategoriesData = []
-  // loop through each category and create an object with a slug
-  allCategoriesUnique.forEach((category) => {
-    allCategoriesData.push({name: category, slug: `${generateSlug(category)}`});
-  })
+  const allCategoriesData = generateCategoryData(allCategoriesUnique);
 
   // map through the categories array
   return allCategoriesData.map((category) => {

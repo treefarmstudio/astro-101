@@ -1,23 +1,17 @@
 ---
 // Component imports and setup JavaScript go here!
 import BaseLayout from '../../../layouts/BaseLayout.astro'
-import {generateSlug} from '../../../utils/helpers.js'
+import {generateCategoryData} from '../../../utils/helpers.js'
 
+const allPosts = Astro.fetchContent('../*.md');
+// create a set of all individual categories
+const allCategoriesUnique = new Set();
 
-  const allPosts = Astro.fetchContent('../*.md');
-  // create a set of all individual categories
-  const allCategoriesUnique = new Set();
+allPosts.map(post => {
+    post.categories && post.categories.map(category => allCategoriesUnique.add(category))
+})
 
-  allPosts.map(post => {
-      post.categories && post.categories.map(category => allCategoriesUnique.add(category))
-  })
-
-  const allCategoriesData = []
-  // loop through each category and create an object with a slug
-  allCategoriesUnique.forEach((category) => {
-    allCategoriesData.push({name: category, slug: `${generateSlug(category)}`});
-  })
-
+const allCategoriesData = generateCategoryData(allCategoriesUnique)
 
 const title = `Categories`;
 ---
