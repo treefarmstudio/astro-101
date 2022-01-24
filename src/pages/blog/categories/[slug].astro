@@ -3,44 +3,41 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro'
 import {generateCategoryData} from '../../../utils/helpers.js'
 
-export async function getStaticPaths({ }) {
+export async function getStaticPaths() {
   const allPosts = Astro.fetchContent('../*.md');
   const sortedPosts = allPosts.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
-  // create a set of all individual categories
   const allCategoriesUnique = new Set();
-
   sortedPosts.map(post => {
-      post.categories && post.categories.map(category => allCategoriesUnique.add(category))
+    post.categories && post.categories.map(category => {
+      allCategoriesUnique.add(category);
+    })
   })
-
   const allCategoriesData = generateCategoryData(allCategoriesUnique);
-
-  // map through the categories array
+   // map through the categories array
   return allCategoriesData.map((category) => {
     // filter the posts that match the given category
     const posts = sortedPosts.filter((post) => post.categories.includes(category.name))
-    return {
-    params: {slug: category.slug}, 
-    props: {
-      category: category.name, 
-      posts: posts
-    }
+      return {
+      params: {slug: category.slug}, 
+      props: {
+        category: category.name, 
+        posts: posts
+      }
     };
   });
 }
 
 const {category, posts} = Astro.props;
-
-const title = `Posts by Category "${category}"`;
+const title = `Blog Posts Tagged with ${category}`
 ---
 
 <BaseLayout title={title}>
   <div>
     <h1>{title}</h1>
     <ul>
-      {posts.map((post) => (
-      <li><a href={post.url}>{post.title}</a></li>
-    ))}
+      {posts.map(post => (
+        <li><a href={post.url}>{post.title}</a></li>
+      ))}
     </ul>
   </div>
 </BaseLayout>

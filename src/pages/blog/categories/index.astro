@@ -2,27 +2,30 @@
 // Component imports and setup JavaScript go here!
 import BaseLayout from '../../../layouts/BaseLayout.astro'
 import {generateCategoryData} from '../../../utils/helpers.js'
-
 const allPosts = Astro.fetchContent('../*.md');
-// create a set of all individual categories
 const allCategoriesUnique = new Set();
 
 allPosts.map(post => {
-    post.categories && post.categories.map(category => allCategoriesUnique.add(category))
+  post.categories && post.categories.map(category => {
+    allCategoriesUnique.add(category);
+  })
 })
 
-const allCategoriesData = generateCategoryData(allCategoriesUnique)
+// console.log(allCategoriesUnique);
 
-const title = `Categories`;
+const allCategoriesData = generateCategoryData(allCategoriesUnique);
+
+console.log(allCategoriesData);
+const title = "Blog Categories"
 ---
 
 <BaseLayout title={title}>
   <div>
     <h1>{title}</h1>
     <ul>
-      {allCategoriesData.map((category) => (
-      <li><a href={`/blog/categories/${category.slug}/`}>{category.name}</a></li>
-    ))}
+      {allCategoriesData.map(category => (
+        <li><a href={`/blog/categories/${category.slug}`}>{category.name}</a></li>
+      ))}
     </ul>
   </div>
 </BaseLayout>

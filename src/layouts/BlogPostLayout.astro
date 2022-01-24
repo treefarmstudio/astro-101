@@ -2,8 +2,11 @@
 // Component imports and setup JavaScript go here!
 import BaseHead from '../components/BaseHead.astro'
 import {generateCategoryData} from '../utils/helpers.js'
+import {Icon} from 'astro-icon'
+
 const {content} = Astro.props;
-const allCategoriesData = generateCategoryData(content.categories)
+const allCategoriesData = generateCategoryData(content.categories);
+// console.log(allCategoriesData);
 ---
 
 <html lang="en">
@@ -22,9 +25,11 @@ const allCategoriesData = generateCategoryData(content.categories)
 	</head>
 
 	<body>
+    <a href="/blog/feed.xml">
+      <Icon pack="mdi" name="rss" width="24" height="24" />    
+    </a>
     <ul>
-      {allCategoriesData.map((category) => (
-        // <li><a>{category.name}</a></li>
+      {allCategoriesData.map(category => (
         <li><a href={`/blog/categories/${category.slug}`}>{category.name}</a></li>
       ))}
     </ul>
