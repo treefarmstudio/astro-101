@@ -5,7 +5,7 @@ import {generateCategoryData} from '../../../utils/helpers.js'
 const allPosts = Astro.fetchContent('../*.md');
 const allCategoriesUnique = new Set();
 
-allPosts.map(post => {
+allPosts.forEach(post => {
   post.categories && post.categories.map(category => {
     allCategoriesUnique.add(category);
   })

@@ -7,7 +7,7 @@ export async function getStaticPaths() {
   const allPosts = Astro.fetchContent('../*.md');
   const sortedPosts = allPosts.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
   const allCategoriesUnique = new Set();
-  sortedPosts.map(post => {
+  sortedPosts.forEach(post => {
     post.categories && post.categories.map(category => {
       allCategoriesUnique.add(category);
     })
