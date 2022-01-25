@@ -28,6 +28,7 @@ const allCategoriesData = generateCategoryData(content.categories);
     <a href="/blog/feed.xml">
       <Icon pack="mdi" name="rss" width="24" height="24" />    
     </a>
+    <p>Categories</p>
     <ul>
       {allCategoriesData.map(category => (
         <li><a href={`/blog/categories/${category.slug}`}>{category.name}</a></li>
