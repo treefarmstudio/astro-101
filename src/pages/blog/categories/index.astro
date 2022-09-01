@@ -2,11 +2,11 @@
 // Component imports and setup JavaScript go here!
 import BaseLayout from '../../../layouts/BaseLayout.astro'
 import {generateCategoryData} from '../../../utils/helpers.js'
-const allPosts = Astro.fetchContent('../*.md');
+const allPosts = await Astro.glob('../*.mdx');
 const allCategoriesUnique = new Set();
 
 allPosts.forEach(post => {
-  post.categories && post.categories.map(category => {
+  post.frontmatter.categories && post.frontmatter.categories.map(category => {
     allCategoriesUnique.add(category);
   })
 })

@@ -2,25 +2,25 @@
 // Component imports and setup JavaScript go here!
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Paginator from '../../components/Paginator.astro'
-export async function getStaticPaths({rss, paginate}) {
-  const allPosts = Astro.fetchContent('./*.md');
+export async function getStaticPaths({paginate}) {
+  const allPosts = await Astro.glob('./*.mdx');
   const sortedPosts = allPosts.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
-    rss({
-    // The RSS Feed title, description, and custom metadata.
-    title: 'Jaydan\'s Blog',
-    description: 'An example blog on Astro',
-    customData: `<language>en-us</language>`,
-    // The list of items for your RSS feed, sorted.
-    items: sortedPosts.map(item => ({
-      title: item.title,
-      description: item.description,
-      link: item.url,
-      pubDate: item.date,
-    })),
-    // Optional: Customize where the file is written to.
-    // Otherwise, defaults to "/rss.xml"
-    dest: "/blog/feed.xml",
-  });
+  //   rss({
+  //   // The RSS Feed title, description, and custom metadata.
+  //   title: 'Jaydan\'s Blog',
+  //   description: 'An example blog on Astro',
+  //   customData: `<language>en-us</language>`,
+  //   // The list of items for your RSS feed, sorted.
+  //   items: sortedPosts.map(item => ({
+  //     title: item.title,
+  //     description: item.description,
+  //     link: item.url,
+  //     pubDate: item.date,
+  //   })),
+  //   // Optional: Customize where the file is written to.
+  //   // Otherwise, defaults to "/rss.xml"
+  //   dest: "/blog/feed.xml",
+  // });
   return paginate(sortedPosts, {pageSize: 1});
 }
 
@@ -28,15 +28,12 @@ const title = "Blog"
 const {page} = Astro.props;
 ---
 
-<style lang="scss" scoped>
-</style>
-
 <BaseLayout title={title}>
   <div>
     <h1>{title}</h1>
     <ul>
     {page.data.map((post) => (
-      <li><a href={post.url}>{post.title}</a></li>
+      <li><a href={post.url}>{post.frontmatter.title}</a></li>
     ))}
     </ul>
     <Paginator page={page} /> 

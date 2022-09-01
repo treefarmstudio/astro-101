@@ -4,10 +4,11 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import SpecialButton from '../components/SpecialButtons/SpecialButton.jsx'
 import SpecialButtonTwo from '../components/SpecialButtons/SpecialButtonTwo.svelte'
 const title = "Components"
----
+--- 
 
-<style lang="scss" scoped>
-</style>
+<script>
+  import '../components/SpecialButtons/special-button.ts'
+</script>
 
 <BaseLayout title={title}>
   <div>
@@ -15,7 +16,6 @@ const title = "Components"
     <SpecialButton client:load >Click Me</SpecialButton>
     <SpecialButtonTwo client:load >Click Me 2</SpecialButtonTwo>
     <special-button>Click Me 3</special-button>
-    <script type="module" src={Astro.resolve('../components/SpecialButtons/special-button.ts')}></script>
   </div>
 </BaseLayout>
 

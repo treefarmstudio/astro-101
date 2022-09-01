@@ -1,21 +1,17 @@
-// Full Astro Configuration API Documentation:
-// https://docs.astro.build/reference/configuration-reference
+import { defineConfig } from 'astro/config';
+import react from "@astrojs/react";
+import svelte from "@astrojs/svelte";
+import image from "@astrojs/image";
 
-// @type-check enabled!
-// VSCode and other TypeScript-enabled text editors will provide auto-completion,
-// helpful tooltips, and warnings if your exported object is invalid.
-// You can disable this by removing "@ts-check" and `@type` comments below.
+import mdx from "@astrojs/mdx";
 
-// @ts-check
-export default /** @type {import('astro').AstroUserConfig} */ ({
+// https://astro.build/config
+export default defineConfig({
+  site: 'https://example.com',
   vite: {
     ssr: {
-      external: ['svgo'],
-    },
+      external: ['svgo']
+    }
   },
-  buildOptions: {
-    site: 'https://example.com',
-  },
-  // Comment out "renderers: []" to enable Astro's default component support.
-  renderers: ['@astrojs/renderer-react', '@astrojs/renderer-svelte'],
+  integrations: [react(), svelte(), image(), mdx()]
 });

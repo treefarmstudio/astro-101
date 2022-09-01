@@ -4,11 +4,11 @@ import BaseLayout from '../../../layouts/BaseLayout.astro'
 import {generateCategoryData} from '../../../utils/helpers.js'
 
 export async function getStaticPaths() {
-  const allPosts = Astro.fetchContent('../*.md');
+  const allPosts = await Astro.glob('../*.mdx');
   const sortedPosts = allPosts.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf());
   const allCategoriesUnique = new Set();
   sortedPosts.forEach(post => {
-    post.categories && post.categories.map(category => {
+    post.frontmatter.categories && post.frontmatter.categories.map(category => {
       allCategoriesUnique.add(category);
     })
   })
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
    // map through the categories array
   return allCategoriesData.map((category) => {
     // filter the posts that match the given category
-    const posts = sortedPosts.filter((post) => post.categories.includes(category.name))
+    const posts = sortedPosts.filter((post) => post.frontmatter.categories.includes(category.name))
       return {
       params: {slug: category.slug}, 
       props: {
@@ -36,7 +36,7 @@ const title = `Blog Posts Tagged with ${category}`
     <h1>{title}</h1>
     <ul>
       {posts.map(post => (
-        <li><a href={post.url}>{post.title}</a></li>
+        <li><a href={post.url}>{post.frontmatter.title}</a></li>
       ))}
     </ul>
   </div>

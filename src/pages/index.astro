@@ -1,6 +1,7 @@
 ---
 // Component imports and setup JavaScript go here!
 import BaseLayout from '../layouts/BaseLayout.astro'
+import { Image } from '@astrojs/image/components';
 
 const title = "Testing Title from fences"
 ---
@@ -28,7 +29,7 @@ div {
   </ul>
   <h2>Images</h2>
   <img src="/images/john-fowler-unsplash.jpg" width="300px" />
-  <img src={Astro.resolve('../images/wil-stewart-unsplash.jpg')} width="300px" />
+  <Image src={import('../images/wil-stewart-unsplash.jpg')} width={300} />
 </BaseLayout>
 
 
